@@ -19,6 +19,8 @@ const middleware = [
 app.use(middleware)
 
 app.get('/', (req, res) => {
+    res.render('pages/auth/signup')
+
     res.json({
         message: 'hello JavaScript world'
     })
