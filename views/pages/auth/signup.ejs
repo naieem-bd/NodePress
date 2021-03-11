@@ -1,9 +1,12 @@
 <%- include('../../partials/header.ejs') %> 
 
 <div class="container">
-    <br><br><br><br>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia atque excepturi accusamus, debitis praesentium, ad asperiores quis eos nesciunt corporis quod suscipit, repellat unde. Commodi perferendis quisquam sapiente et illo.</p>
-    <br><br><br><br>
+    <div class="row">
+        <div class="col-lg-6 mx-auto">
+            <h5>Create a new account</h5>
+            <form action="/auth/signup" method="POST"></form>
+        </div>
+    </div>
 </div>
 
 <%- include('../../partials/footer.ejs') %> 

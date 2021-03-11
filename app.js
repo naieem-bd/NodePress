@@ -19,7 +19,7 @@ const middleware = [
 app.use(middleware)
 
 app.get('/', (req, res) => {
-    res.render('pages/auth/signup')
+    res.render('pages/auth/signup', {title: 'Create a new account'})
 
     res.json({
         message: 'hello JavaScript world'
