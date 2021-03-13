@@ -15,6 +15,10 @@ const userSchema = new Schema({
         trim: true,
         required: true
     },
+    password: {
+        type: String,
+        required: true
+    },
     profile: {
         type: Schema.Types.ObjectId,
         ref: 'Profile'
