@@ -5,8 +5,8 @@
         <div class="col-lg-6 mx-auto">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h5>Create a new account</h5>
-                    <form action="/auth/signup" method="POST">
+                    <h5 class="mb-3">Create a new account</h5>
+                    <form action="/auth/signup" method="POST" class="mb-3">
                         <div class="mb-3">
                             <label for="username">Enter user name [ must be uniq ]</label>
                             <input type="text" name="username" id="username" class="form-control">
@@ -25,6 +25,7 @@
                         </div>
                         <input type="submit" class="btn btn-primary" value="Signup">
                     </form>
+                    <a href="/auth/login">Already have an account? Signin Now!</a>
                 </div>
             </div>
         </div>
