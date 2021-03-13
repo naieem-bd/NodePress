@@ -1,6 +1,9 @@
 const express = require('express')
-const { set } = require('mongoose')
 const morgan = require('morgan')
+const mongoose = require('mongoose')
+
+// imports routes
+const authRoute = require('./routes/authRoute')
 
 const app = express()
 
@@ -18,15 +21,26 @@ const middleware = [
 
 app.use(middleware)
 
-app.get('/', (req, res) => {
-    res.render('pages/auth/signup', {title: 'Create a new account'})
+app.use('/auth', authRoute)
 
+app.get('/', (req, res) => {
     res.json({
         message: 'hello JavaScript world'
     })
 })
 
 const PORT = process.env.PORT || 2727
-app.listen(PORT, () => {
-    console.log(`server is running on PORT ${PORT}`)
-})
+mongoose
+    .connect('mongodb+srv://naieem:nai123456@cluster0.lsnb1.mongodb.net/NodePress?retryWrites=true&w=majority', {
+        useNewUrlParser: true, 
+        useUnifiedTopology: true
+    })
+    .then(() => {
+        console.log('database connected')
+        app.listen(PORT, () => {
+            console.log(`server is running on PORT ${PORT}`)
+        })
+    })
+    .catch(e => {
+        return console.log(e)
+    })
