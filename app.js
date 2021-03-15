@@ -5,6 +5,9 @@ const mongoose = require('mongoose')
 // imports routes
 const authRoute = require('./routes/authRoute')
 
+// playground routes
+const validatorRoute = require('./playground/validator')  // should be remove later
+
 const app = express()
 
 // setup view engine
@@ -22,6 +25,8 @@ const middleware = [
 app.use(middleware)
 
 app.use('/auth', authRoute)
+
+app.use('/playground', validatorRoute) // should be remove later
 
 app.get('/', (req, res) => {
     res.json({
