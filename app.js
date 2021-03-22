@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 const authRoute = require('./routes/authRoute')
 
 // playground routes
-const validatorRoute = require('./playground/validator')  // should be remove later
+// const validatorRoute = require('./playground/validator')  // should be remove later
 
 const app = express()
 
@@ -26,7 +26,7 @@ app.use(middleware)
 
 app.use('/auth', authRoute)
 
-app.use('/playground', validatorRoute) // should be remove later
+// app.use('/playground', validatorRoute) // should be remove later
 
 app.get('/', (req, res) => {
     res.json({
