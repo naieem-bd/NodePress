@@ -12,10 +12,24 @@ router.post('/validator',
         .isEmpty()
         .withMessage('plz enter username')
         .isLength({max: 15})
-        .withMessage('you can not enter more then 15 character'),
+        .withMessage('you can not enter more then 15 character')
+        .trim(),
     check('email')
         .isEmail()
         .withMessage('plz provide a valide email')
+        .normalizeEmail(),
+    check('password').custom(value => {
+        if(value.length < 5) {
+            throw new Error('password must be greater then 25 character')
+        }
+        return true
+    }),
+    check('confirmPassword').custom((value, { req }) => {
+        if(value !== req.body.password) {
+            throw new Error('password does not match')
+        }
+        return true
+    })
 ],
 (req, res, next) => {
     let errors = validationResult(req)
@@ -27,6 +41,7 @@ router.post('/validator',
     // console.log(errors.mapped())
 
     console.log(errors.formatWith(formatter).mapped());
+    console.log(req.body.username, req.body.email)
 
     res.render('playground/signup', {title: 'validator from palyground'})
 })
