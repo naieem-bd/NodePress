@@ -36,10 +36,12 @@ const signupValidator = [
         .isLength({ min:5 }).withMessage('password must be greater then 5 charecter')
     ,
     body('confirmPassword')
-        .custom(async (confirmPassword, { req }) => {
+        .isLength({ min:5 }).withMessage('password must be greater then 5 charecter')
+        .custom((confirmPassword, { req }) => {
             if(confirmPassword !== req,body.password) {
                 throw new Error('password does not match')
             }
+            return true
         })
 ]
 

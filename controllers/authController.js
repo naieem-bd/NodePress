@@ -1,11 +1,19 @@
 const bcrypt = require('bcrypt')
+const { validationResult } = require('express-validator')
+
 const User = require('../models/User')
+const errorFormatter = require('../utils/validationErrorFormatter')
 
 exports.signupGetController = (req, res, next) => {
     res.render('pages/auth/signup', {title: 'Create a new account!'})
 }
 
 exports.signupPostController = async (req, res, next) => {
+
+    let errors = validationResult(req).formatWith(errorFormatter)
+    if(!errors.isEmpty()){
+        return console.log(errors.mapped())
+    }
     
     const { username, email, password } = req.body
     
