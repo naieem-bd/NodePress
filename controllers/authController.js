@@ -5,17 +5,23 @@ const User = require('../models/User')
 const errorFormatter = require('../utils/validationErrorFormatter')
 
 exports.signupGetController = (req, res, next) => {
-    res.render('pages/auth/signup', {title: 'Create a new account!'})
+    res.render('pages/auth/signup', {title: 'Create a new account!', error: {}, value: {}})
 }
 
 exports.signupPostController = async (req, res, next) => {
+    const { username, email, password } = req.body
 
     let errors = validationResult(req).formatWith(errorFormatter)
     if(!errors.isEmpty()){
-        return console.log(errors.mapped())
+        return res.render('pages/auth/signup', {
+            title: 'Create a new account!', 
+            error: errors.mapped(),
+            value: {
+                username, email, password
+            }
+        })
     }
     
-    const { username, email, password } = req.body
     
     try {
         let hashedPassword = await bcrypt.hash(password, 11)
