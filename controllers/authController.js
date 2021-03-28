@@ -43,17 +43,22 @@ exports.signupPostController = async (req, res, next) => {
 }
 
 exports.loginGetController = (req, res, next) => {
-    res.render('pages/auth/login', { title: 'Login to you account', error: {} })
+    // let isLoggedIn = req.get('Cookie').includes('isLoggedIn=true') ? true : false
+    res.render('pages/auth/login', { title: 'Login to you account', error: {}, isLoggedIn:false })
 }
 
 exports.loginPostController = async (req, res, next) => {
     const { email, password } = req.body
 
+    // let isLoggedIn = req.get('Cookie').includes('isLoggedIn=true') ? true : false
+    res.render('pages/auth/login', { title: 'Login to you account', error: {}, isLoggedIn:false })    
+
     let errors = validationResult(req).formatWith(errorFormatter)
     if(!errors.isEmpty()){
         return res.render('pages/auth/login', {
             title: 'login to your account', 
-            error: errors.mapped()
+            error: errors.mapped(),
+            isLoggedIn
         })
     }    
 
@@ -73,8 +78,8 @@ exports.loginPostController = async (req, res, next) => {
             })
         }
 
-        console.log('successfully logged in', user)
-        res.render('pages/auth/login', {title: 'login to your account'})
+        res.setHeader('Set-Cookie', 'isLoggedIn=true')
+        res.render('pages/auth/login', {title: 'login to your account', error: {}, isLoggedIn:false })
 
     } catch(e) {
 
