@@ -9,7 +9,7 @@ exports.signupGetController = (req, res, next) => {
 }
 
 exports.signupPostController = async (req, res, next) => {
-    const { username, email, password } = req.body
+    let { username, email, password } = req.body
 
     let errors = validationResult(req).formatWith(errorFormatter)
     if(!errors.isEmpty()){
@@ -43,11 +43,19 @@ exports.signupPostController = async (req, res, next) => {
 }
 
 exports.loginGetController = (req, res, next) => {
-    res.render('pages/auth/login', { title: 'Login to you account' })
+    res.render('pages/auth/login', { title: 'Login to you account', error: {} })
 }
 
 exports.loginPostController = async (req, res, next) => {
     const { email, password } = req.body
+
+    let errors = validationResult(req).formatWith(errorFormatter)
+    if(!errors.isEmpty()){
+        return res.render('pages/auth/login', {
+            title: 'login to your account', 
+            error: errors.mapped()
+        })
+    }    
 
     try {
 
