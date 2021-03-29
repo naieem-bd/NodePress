@@ -7,6 +7,9 @@ const MongoDBStore = require('connect-mongodb-session')(session)
 // imports routes
 const authRoute = require('./routes/authRoute')
 
+// imports middleware
+const { bindUserWrithRequest } = require('./middleware/authMiddleware')
+
 // playground routes
 // const validatorRoute = require('./playground/validator')  // should be remove later
 
@@ -34,7 +37,8 @@ const middleware = [
         resave: false,
         saveUninitialized: false,
         store: store
-    })
+    }),
+    bindUserWrithRequest()
 ]
 
 app.use(middleware)
