@@ -2,12 +2,20 @@ const express = require('express')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
 const session = require('express-session')
+const MongoDBStore = require('connect-mongodb-session')(session)
 
 // imports routes
 const authRoute = require('./routes/authRoute')
 
 // playground routes
 // const validatorRoute = require('./playground/validator')  // should be remove later
+
+const MONGODB_URI = 'mongodb+srv://naieem:nai123456@cluster0.lsnb1.mongodb.net/NodePress?retryWrites=true&w=majority'
+const store = new MongoDBStore({
+    uri: MONGODB_URI,
+    collection: 'sessions',
+    expires: 1000 * 60 * 60 * 2
+});
 
 const app = express()
 
@@ -24,7 +32,8 @@ const middleware = [
     session({
         secret: process.env.SECRET_KEY || 'SECRET_KEY',
         resave: false,
-        saveUninitialized: false
+        saveUninitialized: false,
+        store: store
     })
 ]
 
@@ -42,7 +51,7 @@ app.get('/', (req, res) => {
 
 const PORT = process.env.PORT || 2727
 mongoose
-    .connect('mongodb+srv://naieem:nai123456@cluster0.lsnb1.mongodb.net/NodePress?retryWrites=true&w=majority', {
+    .connect(MONGODB_URI, {
         useNewUrlParser: true, 
         useUnifiedTopology: true
     })
