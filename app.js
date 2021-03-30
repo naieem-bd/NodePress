@@ -5,10 +5,12 @@ const session = require('express-session')
 const MongoDBStore = require('connect-mongodb-session')(session)
 
 // imports routes
-const authRoute = require('./routes/authRoute')
+const authRoutes = require('./routes/authRoute')
+const dashboardRoutes = require('./routes/dashboardRoute')
 
 // imports middleware
 const { bindUserWrithRequest } = require('./middleware/authMiddleware')
+const setLocals = require('./middleware/setLocals')
 
 // playground routes
 // const validatorRoute = require('./playground/validator')  // should be remove later
@@ -38,12 +40,14 @@ const middleware = [
         saveUninitialized: false,
         store: store
     }),
-    bindUserWrithRequest()
+    bindUserWrithRequest(),
+    setLocals()
 ]
 
 app.use(middleware)
 
-app.use('/auth', authRoute)
+app.use('/auth', authRoutes)
+app.use('/dashboard', dashboardRoutes)
 
 // app.use('/playground', validatorRoute) // should be remove later
 
