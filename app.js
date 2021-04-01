@@ -3,6 +3,7 @@ const morgan = require('morgan')
 const mongoose = require('mongoose')
 const session = require('express-session')
 const MongoDBStore = require('connect-mongodb-session')(session)
+const flash = require('connect-flash')
 
 // imports routes
 const authRoutes = require('./routes/authRoute')
@@ -41,7 +42,8 @@ const middleware = [
         store: store
     }),
     bindUserWrithRequest(),
-    setLocals()
+    setLocals(),
+    flash()
 ]
 
 app.use(middleware)
