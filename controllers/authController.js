@@ -77,7 +77,13 @@ exports.loginPostController = async (req, res, next) => {
 
         req.session.isLoggedIn = true
         req.session.user = user
-        res.render('pages/auth/login', {title: 'login to your account', error: {}})
+        req.session.save( err => {
+            if(err) {
+                console.log(err)
+                return next(err)
+            }
+            res.redirect('/dashboard')
+        })
 
     } catch(e) {
 
@@ -88,5 +94,12 @@ exports.loginPostController = async (req, res, next) => {
 }
 
 exports.logoutController = (req, res, next) => {
+    req.session.destroy( err => {
+        if(err) {
+            console.log(err)
+            return next(err)
+        }
 
+        res.redirect('/auth/login')
+    })
 }

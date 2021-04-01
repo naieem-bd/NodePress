@@ -1,3 +1,4 @@
+const session = require('express-session')
 const User = require('../models/User')
 
 exports.bindUserWrithRequest = () => {
@@ -21,6 +22,13 @@ exports.bindUserWrithRequest = () => {
 exports.isAuthenticated = (req, res,next) => {
     if(!req.session.isLoggedIn) {
         res.redirect('/auth/login')
+    }
+    next()
+}
+
+exports.isUnAuthenticated = (req, res, next) => {
+    if(req.session.isLoggedIn) {
+        res.redirect('/dashboard')
     }
     next()
 }
