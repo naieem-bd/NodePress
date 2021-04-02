@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
@@ -16,14 +17,19 @@ const setLocals = require('./middleware/setLocals')
 // playground routes
 // const validatorRoute = require('./playground/validator')  // should be remove later
 
-const MONGODB_URI = 'mongodb+srv://naieem:nai123456@cluster0.lsnb1.mongodb.net/NodePress?retryWrites=true&w=majority'
+const MONGODB_URI = `mongodb+srv://${process.env.DB_ADMIN}:${process.env.DB_PASSWORD}@cluster0.lsnb1.mongodb.net/NodePress?retryWrites=true&w=majority`
 const store = new MongoDBStore({
     uri: MONGODB_URI,
     collection: 'sessions',
     expires: 1000 * 60 * 60 * 2
 });
 
+
 const app = express()
+
+if(app.get('env').toLowerCase() === 'development') {
+    app.use(morgan('dev'))
+}
 
 // setup view engine
 app.set('view engine', 'ejs')
@@ -31,7 +37,6 @@ app.set('views', 'views')
 
 // middleware array
 const middleware = [
-    morgan('dev'),
     express.static('public'),
     express.urlencoded({ extended:true }),
     express.json(),
