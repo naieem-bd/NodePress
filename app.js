@@ -18,12 +18,19 @@ const setLocals = require('./middleware/setLocals')
 // playground routes
 // const validatorRoute = require('./playground/validator')  // should be remove later
 
-const MONGODB_URI = `mongodb+srv://${process.env.DB_ADMIN}:${process.env.DB_PASSWORD}@cluster0.lsnb1.mongodb.net/NodePress?retryWrites=true&w=majority`
+const MONGODB_URI = `mongodb+srv://${config.get('db-username')}:${config.get('db-password')}@cluster0.lsnb1.mongodb.net/NodePress?retryWrites=true&w=majority`
 const store = new MongoDBStore({
     uri: MONGODB_URI,
     collection: 'sessions',
     expires: 1000 * 60 * 60 * 2
 });
+
+
+function add(a,b) {
+    return a + b;
+}
+
+console.log(add(10))
 
 
 const app = express()
@@ -52,7 +59,7 @@ const middleware = [
     express.urlencoded({ extended:true }),
     express.json(),
     session({
-        secret: process.env.SECRET_KEY || 'SECRET_KEY',
+        secret: config.get('secret'),
         resave: false,
         saveUninitialized: false,
         store: store
