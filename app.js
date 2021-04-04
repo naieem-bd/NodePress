@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const session = require('express-session')
 const MongoDBStore = require('connect-mongodb-session')(session)
 const flash = require('connect-flash')
+const config = require('config')
 
 // imports routes
 const authRoutes = require('./routes/authRoute')
@@ -26,6 +27,16 @@ const store = new MongoDBStore({
 
 
 const app = express()
+
+console.log(config.get('name'))
+
+// const config = require('./config/config')
+
+// if(app.get('env').toLowerCase() === 'development') {
+//     console.log(config.dev.name)
+// } else {
+//     console.log(config.prod.name)
+// }
 
 if(app.get('env').toLowerCase() === 'development') {
     app.use(morgan('dev'))
