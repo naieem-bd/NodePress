@@ -25,29 +25,7 @@ const store = new MongoDBStore({
     expires: 1000 * 60 * 60 * 2
 });
 
-
-function add(a,b) {
-    return a + b;
-}
-
-console.log(add(10))
-
-
 const app = express()
-
-console.log(config.get('name'))
-
-// const config = require('./config/config')
-
-// if(app.get('env').toLowerCase() === 'development') {
-//     console.log(config.dev.name)
-// } else {
-//     console.log(config.prod.name)
-// }
-
-if(app.get('env').toLowerCase() === 'development') {
-    app.use(morgan('dev'))
-}
 
 // setup view engine
 app.set('view engine', 'ejs')
