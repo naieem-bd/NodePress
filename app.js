@@ -19,6 +19,7 @@ const setLocals = require('./middleware/setLocals')
 // const validatorRoute = require('./playground/validator')  // should be remove later
 
 const MONGODB_URI = `mongodb+srv://${config.get('db-username')}:${config.get('db-password')}@cluster0.lsnb1.mongodb.net/NodePress?retryWrites=true&w=majority`
+
 const store = new MongoDBStore({
     uri: MONGODB_URI,
     collection: 'sessions',
