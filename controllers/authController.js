@@ -46,7 +46,6 @@ exports.signupPostController = async (req, res, next) => {
         req.flash('success', 'user created successfully')
         res.redirect('pages/auth/login')
     } catch(e) {
-        console.log(e)
         next(e)
     }
 
@@ -110,8 +109,6 @@ exports.loginPostController = async (req, res, next) => {
         })
 
     } catch(e) {
-
-        console.log(e)
         next(e)
 
     }
@@ -120,7 +117,6 @@ exports.loginPostController = async (req, res, next) => {
 exports.logoutController = (req, res, next) => {
     req.session.destroy( err => {
         if(err) {
-            console.log(err)
             return next(err)
         }
         req.flash('success', 'successfully logout')
