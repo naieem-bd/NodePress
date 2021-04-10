@@ -44,7 +44,7 @@ exports.signupPostController = async (req, res, next) => {
 
         await user.save()
         req.flash('success', 'user created successfully')
-        res.redirect('pages/auth/login')
+        res.redirect('/auth/login')
     } catch(e) {
         next(e)
     }
