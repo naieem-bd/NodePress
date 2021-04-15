@@ -44,11 +44,12 @@
                                         <label for="name">Enter your name</label>
                                         <input 
                                             type="text"
-                                            class="form-control"
+                                            class="form-control <%= error.name ? 'is-invalid' : '' %> "
                                             name="name"
                                             placeholder="Enter your name"
                                             id="name"
                                         >
+                                        <div class="invalid-feedback"><%= error.name %></div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="email">Enter Email</label>
@@ -66,67 +67,81 @@
                                         <label for="title">Enter a short title</label>
                                         <input 
                                             type="text"
-                                            class="form-control"
+                                            class="form-control <%= error.title ? 'is-invalid' : '' %>"
                                             name="title"
                                             placeholder="Enter a short title"
                                             id="title"
                                         >
+                                        <div class="invalid-feedback"><%= error.title %></div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="bio">Enter a short Bio</label>
                                         <textarea 
                                             name="bio" 
                                             id="bio"
-                                            class="form-control"
+                                            class="form-control <%= error.bio ? 'is-invalid' : '' %>"
                                         ></textarea>
+                                        <div class="invalid-feedback"><%= error.bio %></div>
                                     </div>
         
                                     <div>
                                         <p class="lead">Your Social Links</p>
         
                                         <div class="input-group mb-3">
-                                            <span class="input-group-text">
-                                                <i class="fas fa-globe"></i>
-                                            </span>
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-globe"></i>
+                                                </span>
+                                            </div>                                            
                                             <input 
                                                 type="text" 
-                                                class="form-control" 
+                                                class="form-control <%= error.website ? 'is-invalid' : '' %>" 
                                                 placeholder="Website Links" 
                                                 name="website"
                                             >
+                                            <div class="invalid-feedback"><%= error.website %></div>
                                         </div>
                                         <div class="input-group mb-3">
-                                            <span class="input-group-text">
-                                                <i class="fab fa-facebook"></i>
-                                            </span>
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fab fa-facebook"></i>
+                                                </span>
+                                            </div>                                            
                                             <input 
                                                 type="text" 
-                                                class="form-control" 
+                                                class="form-control <%= error.facebook ? 'is-invalid' : '' %>" 
                                                 placeholder="Facebook Links" 
                                                 name="facebook"
                                             >
+                                            <div class="invalid-feedback"><%= error.facebook %></div>
                                         </div>
                                         <div class="input-group mb-3">
-                                            <span class="input-group-text">
-                                                <i class="fab fa-twitter"></i>
-                                            </span>
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fab fa-twitter"></i>
+                                                </span>
+                                            </div>                                            
                                             <input 
                                                 type="text" 
-                                                class="form-control" 
+                                                class="form-control <%= error.twitter ? 'is-invalid' : '' %>" 
                                                 placeholder="Twitter Links" 
                                                 name="twitter"
                                             >
+                                            <div class="invalid-feedback"><%= error.twitter %></div>
                                         </div>
                                         <div class="input-group mb-3">
-                                            <span class="input-group-text">
-                                                <i class="fab fa-github"></i>
-                                            </span>
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fab fa-github"></i>
+                                                </span>
+                                            </div>                                            
                                             <input 
                                                 type="text" 
-                                                class="form-control" 
+                                                class="form-control <%= error.github ? 'is-invalid' : '' %>" 
                                                 placeholder="Github Links" 
                                                 name="github"
                                             >
+                                            <div class="invalid-feedback"><%= error.github %></div>
                                         </div>
                                     </div>
                                     <input type="submit" class="btn btn-primary" value="Create Profile">

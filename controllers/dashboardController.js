@@ -30,7 +30,8 @@ exports.createProfileGetController = async (req, res, next) => {
 
         res.render('pages/dashboard/create-profile', { 
             title: 'Create your profile', 
-            flashMessage: Flash.getMessage(req) 
+            flashMessage: Flash.getMessage(req),
+            error: {}
         })
 
     } catch(e) {
@@ -40,12 +41,21 @@ exports.createProfileGetController = async (req, res, next) => {
 
 exports.createProfilePostController = async (req, res, next) => {
     let errors = validationResult(req).formatWith(errorFormatter)
-    console.log(errors.mapped())
+
+    if(!errors.isEmpty()) {
+        return res.render('pages/dashboard/create-profile', { 
+            title: 'Create your profile', 
+            flashMessage: Flash.getMessage(req),
+            error: errors.mapped()
+        })
+    }
 
     res.render('pages/dashboard/create-profile', { 
         title: 'Create your profile', 
-        flashMessage: Flash.getMessage(req) 
+        flashMessage: Flash.getMessage(req),
+        error: {}
     })    
+
 }
 
 exports.editProfileGetController = async (req, res, next) => {
