@@ -16,6 +16,6 @@ router.get('/create-profile', isAuthenticated, createProfileGetController)
 router.post('/create-profile', isAuthenticated, profileValidator, createProfilePostController)
 
 router.get('/edit-profile', isAuthenticated, editProfileGetController)
-router.post('/edit-profile', isAuthenticated, editProfilePostController)
+router.post('/edit-profile', isAuthenticated, profileValidator, editProfilePostController)
 
 module.exports = router
