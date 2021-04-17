@@ -1,0 +1,54 @@
+<%- include('../../../partials/header.ejs') %> 
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css" integrity="sha512-2eMmukTZtvwlfQoG8ztapwAH5fXaQBzaMqdljLopRSA0i6YKM8kBAOrSSykxu9NN9HrtD45lIqfONLII2AFL/Q==" crossorigin="anonymous" />
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+<div class="container-fluid my-5">
+    <div class="row">
+        <div class="col-md-3">
+            left sidebar
+        </div>
+        <div class="col-md-9">
+            <div class="card card-body mx-5">
+                <form action="/posts/create" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="title">Enter your post title</label>
+                        <input type="text" name="title" id="title" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="tiny-mce-post-body">Enter your post body</label>
+                        <textarea name="body" id="tiny-mce-post-body" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="tags">Enter some tags (max 10)</label>
+                        <input type="text" name="tags" id="tags" placeholder="tag1, tag2, tag3" class="form-control">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupFileText">Upload</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="post-thumbnail" id="inputGroupFile">
+                            <label class="custom-file-label" for="inputGroupFile">Choose file</label>
+                        </div>
+                    </div>   
+                    
+                    <input type="submit" class="btn btn-primary" value="Create Post">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../../../partials/footer.ejs') %> 
+
+<script>
+    $('#inputGroupFile').on('change', function(e) {
+        let filename = e.target.files[0].name
+        $(this).next('.custom-file-label').html(filename)
+    })
+</script>
+
+</body>
+</html>
