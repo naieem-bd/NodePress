@@ -14,15 +14,17 @@
                 <form action="/posts/create" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="title">Enter your post title</label>
-                        <input type="text" name="title" id="title" class="form-control">
+                        <input type="text" name="title" id="title" class="form-control <%= error.title ? 'is-invalid' : '' %>" value="<%= value.title ? value.title : '' %>">
+                        <div class="invalid-feedback"><%= error.title %> </div>
                     </div>
                     <div class="form-group">
                         <label for="tiny-mce-post-body">Enter your post body</label>
-                        <textarea name="body" id="tiny-mce-post-body" class="form-control"></textarea>
+                        <textarea name="body" id="tiny-mce-post-body" class="form-control <%= error.body ? 'is-invalid' : '' %>"><%= value.body %></textarea>
+                        <div class="invalid-feedback"><%= error.body %> </div>
                     </div>
                     <div class="form-group">
                         <label for="tags">Enter some tags (max 10)</label>
-                        <input type="text" name="tags" id="tags" placeholder="tag1, tag2, tag3" class="form-control">
+                        <input type="text" name="tags" id="tags" placeholder="tag1, tag2, tag3" class="form-control" value="<%= value.tags ? value.tags : '' %>">
                     </div>
 
                     <div class="input-group mb-3">
