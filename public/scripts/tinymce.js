@@ -14,7 +14,7 @@ window.onload = function() {
             let formData = new FormData()
             formData.append('post-image', blobInfo.blob(), blobInfo.filename())
 
-            let req = new Request('uploads/postimage', {
+            let req = new Request('/uploads/postimage', {
                 method: 'POST',
                 headers,
                 mode: 'cors',
@@ -24,7 +24,10 @@ window.onload = function() {
             fetch(req)
                 .then(res => res.json())
                 .then(data => success(data.imgUrl))
-                .catch(() => failure('HTTP Error'))
+                .catch((e) => {
+                    console.log(e)
+                    failure('HTTP Error')
+                })
         }
     });    
 }

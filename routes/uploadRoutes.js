@@ -5,7 +5,8 @@ const upload = require('../middleware/uploadMiddleware')
 
 const { 
     uploadProfilePics,
-    removeProfilePics
+    removeProfilePics,
+    postImageUploadController
 } = require('../controllers/uploadController')
 
 router.post('/profilePics', 
@@ -14,5 +15,7 @@ router.post('/profilePics',
     uploadProfilePics )
 
 router.delete('/profilePics', isAuthenticated, removeProfilePics)
+
+router.post('/postimage', isAuthenticated, upload.single('post-image'), postImageUploadController)
 
 module.exports = router
