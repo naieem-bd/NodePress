@@ -34,7 +34,7 @@ exports.createPostPostController = async (req, res, next) => {
     }
 
     if(tags) {
-        tags = tags.split(',')
+        tags = tags.split(' ')
     }
 
     let readTime = readingTime(body).text
