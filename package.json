@@ -19,6 +19,7 @@
   "homepage": "https://github.com/naieem-bd/NodePress#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "cheerio": "^1.0.0-rc.6",
     "config": "^3.3.6",
     "connect-flash": "^0.1.1",
     "connect-mongodb-session": "^2.4.1",
