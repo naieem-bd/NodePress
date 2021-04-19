@@ -22,7 +22,7 @@ const commentSchema = new Schema({
                 required: true
             },
             user: {
-                type: Schema.type.ObjectId,
+                type: Schema.Types.ObjectId,
                 ref: 'User',
                 required: true
             },

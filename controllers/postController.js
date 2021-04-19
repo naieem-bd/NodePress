@@ -16,7 +16,7 @@ exports.createPostGetController = (req, res, next) => {
     })
 }
 
-exports.createPostPostController = (req, res, next) => {
+exports.createPostPostController = async (req, res, next) => {
     let { title, body, tags } = req.body
     let errors = validationResult(req).formatWith(errorFormatter)
 
@@ -62,7 +62,7 @@ exports.createPostPostController = (req, res, next) => {
             { $push: { 'posts': createdPost._id } }
         )
         req.flash('success', 'Post created successfully')
-        res.redirect(`/posts/edit/${createdPost._id}`)
+        return res.redirect(`/posts/edit/${createdPost._id}`)
     } catch(e) {
         next(e)
     }
