@@ -134,6 +134,29 @@ exports.editPostPostController = async (req, res, next) => {
     } catch(e) {
         next(e)
     }
+}
 
- 
+exports.deletePostGetController = async (req, res, next) => {
+    let { postId } = req.params
+
+    try {
+        let post = await Post.findOne({ author: req.user._id, _id: postId })
+
+        if(!post) {
+            let error = new Error('404 page not found')
+            error.status = 404
+            throw error
+        }
+
+        await Post.findOneAndDelete({ _id: postId })
+        await Profile.findOneAndUpdate(
+            { user: req.user._id },
+            { $pull: { 'posts': postId } }
+        )
+        req.flash('success', 'Post deleted successfully')
+        res.redirect('/posts')
+        
+    } catch(e) {
+        next(e)
+    }
 }
