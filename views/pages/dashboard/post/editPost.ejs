@@ -11,23 +11,26 @@
         </div>
         <div class="col-md-9">
             <div class="card card-body mx-5">
-                <h5>Create a new post</h5>
-                <form action="/posts/create" method="POST" enctype="multipart/form-data">
+                <h5>Edit your post</h5>
+                <form action="/posts/edit/<%= post._id %> " method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="title">Enter your post title</label>
-                        <input type="text" name="title" id="title" class="form-control <%= error.title ? 'is-invalid' : '' %>" value="<%= value.title ? value.title : '' %>">
+                        <input type="text" name="title" id="title" class="form-control <%= error.title ? 'is-invalid' : '' %>" value="<%= post.title %>">
                         <div class="invalid-feedback"><%= error.title %> </div>
                     </div>
                     <div class="form-group">
                         <label for="tiny-mce-post-body">Enter your post body</label>
-                        <textarea name="body" id="tiny-mce-post-body" class="form-control <%= error.body ? 'is-invalid' : '' %>"><%= value.body %></textarea>
+                        <textarea name="body" id="tiny-mce-post-body" class="form-control <%= error.body ? 'is-invalid' : '' %>"><%= post.body %></textarea>
                         <div class="invalid-feedback"><%= error.body %> </div>
                     </div>
                     <div class="form-group">
                         <label for="tags">Enter some tags (max 10)</label>
-                        <input type="text" name="tags" id="tags" placeholder="tag1, tag2, tag3" class="form-control" value="<%= value.tags ? value.tags : '' %>">
+                        <input type="text" name="tags" id="tags" placeholder="tag1, tag2, tag3" class="form-control" value="<%= post.tags.length > 0 ? post.tags.join(', ') : '' %>">
                     </div>
-
+                    <% if (post.thumbnail) { %>
+                        <label class="w-100">Post Thumbnail</label>
+                        <img src="<%= post.thumbnail %>" id="thumbnail" class="img-fluid mb-4" alt="Post Thumbnail">
+                    <% } %>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text">Upload</span>
@@ -38,7 +41,7 @@
                         </div>
                     </div>   
                     
-                    <input type="submit" class="btn btn-primary" value="Create Post">
+                    <input type="submit" class="btn btn-primary" value="Update Post">
                 </form>
             </div>
         </div>
