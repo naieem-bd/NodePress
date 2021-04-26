@@ -1,0 +1,45 @@
+<%- include('../../../partials/header.ejs') %> 
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css" integrity="sha512-2eMmukTZtvwlfQoG8ztapwAH5fXaQBzaMqdljLopRSA0i6YKM8kBAOrSSykxu9NN9HrtD45lIqfONLII2AFL/Q==" crossorigin="anonymous" />
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.tiny.cloud/1/dj1atk4nt342ttin09gh80p7mvkr4297ivs35n52raze6t0f/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+<div class="container-fluid my-5">
+    <div class="row">
+        <div class="col-md-3">
+            left sidebar
+        </div>
+        <div class="col-md-9">
+            <div class="card card-body">
+                <h5>List of my posts</h5>
+                <div class="row">
+                    <% if (posts.length === 0) { %>
+                        <div class="text-center text-muted">
+                            <p>There is no post availabe right now!</p>
+                            <a href="/posts/create" class="btn btn-primary btn-sm">Create Post Now</a>
+                        </div>
+                    <% } else { %>
+                        <% for( let post of posts.reverse() ) { %>
+                            <div class="card col-sm-3 m-3">
+                                <% if (post.thumbnail) { %>
+                                    <img src="<%= post.thumbnail %> " alt="<%= post.title %> " class="card-img mt-3">
+                                <% } %>
+                                <div class="card-body">
+                                    <a href="/posts/edit/<%= post._id %> " style="color: #222;">
+                                        <h5><%= post.title %> </h5>
+                                    </a>
+                                </div>
+                            </div>
+                        <% } %>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../../../partials/footer.ejs') %> 
+
+
+</body>
+</html>

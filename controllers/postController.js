@@ -160,3 +160,16 @@ exports.deletePostGetController = async (req, res, next) => {
         next(e)
     }
 }
+
+exports.postsGetController = async (req, res, next) => {
+    try {
+        let posts = await Post.find({ author: req.user._id })
+        res.render('pages/dashboard/post/posts', {
+            title: 'My created all posts',
+            posts,
+            flashMessage: Flash.getMessage(req)
+        })
+    } catch(e) {
+        next(e)
+    }
+}
