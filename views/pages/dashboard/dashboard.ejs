@@ -1,17 +1,26 @@
 <%- include('../../partials/header.ejs') %> 
 
-<div class="container my-5">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css" integrity="sha512-2eMmukTZtvwlfQoG8ztapwAH5fXaQBzaMqdljLopRSA0i6YKM8kBAOrSSykxu9NN9HrtD45lIqfONLII2AFL/Q==" crossorigin="anonymous" />
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+<div class="container-fluid my-5">
     <div class="row">
-        <div class="col-sm-12">
-            <br><br><br><br><br><br><br>
-            <p>welcome to your dashboard</p>
-            <br><br><br><br><br><br><br>
-            <br><br><br><br><br><br><br>
+        <div class="col-md-3">
+            <%- include('../../partials/sidebar.ejs') %> 
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-8">
+                    <h4 class="text-center display-4">My dashboard</h4>
+                </div>
+            </div>
         </div>
     </div>
+
+
+
 </div>
 
 <%- include('../../partials/footer.ejs') %> 
-
 </body>
 </html>
