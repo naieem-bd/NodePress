@@ -1,7 +1,7 @@
 const Post = require('../../models/Post')
 const Comment = require('../../models/Comment')
 
-exports.commentPostController = (req, res, next) => {
+exports.commentPostController = async (req, res, next) => {
     let { postId } = req.params
     let { body } = req.body
 

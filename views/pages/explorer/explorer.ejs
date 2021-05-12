@@ -1,0 +1,34 @@
+<%- include('../../partials/header.ejs', {title: 'explorer'}) %> 
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-6 mx-auto">
+            <section class="mb-5">
+                <a 
+                    href="/explorer?filter=latest"
+                    class="btn <%= filter==='latest' ? 'btn-primary' : 'btn-secondary' %> "
+                >Latest</a>
+                <a 
+                    href="/explorer?filter=week"
+                    class="btn <%= filter==='week' ? 'btn-primary' : 'btn-secondary' %> "
+                >Week</a>
+                <a 
+                    href="/explorer?filter=month"
+                    class="btn <%= filter==='month' ? 'btn-primary' : 'btn-secondary' %> "
+                >Month</a>
+                <a 
+                    href="/explorer?filter=all"
+                    class="btn <%= filter==='all' ? 'btn-primary' : 'btn-secondary' %> "
+                >All</a>
+            </section>
+            <section>
+                <p>There is no post</p>
+            </section>
+        </div>
+    </div>
+</div>
+
+<%- include('../../partials/footer.ejs') %> 
+
+</body>
+</html>
