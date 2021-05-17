@@ -22,7 +22,29 @@
                 >All</a>
             </section>
             <section>
-                <p>There is no post</p>
+                <% if (posts.length === 0) { %>
+                    <p>There is no post</p>
+                <% } else { %>
+                    <% for( let post of posts ) { %>
+                        <div class="card card-body mb-3">
+                            <% if (post.thumbnail) { %>
+                                <img class="img-fluid mb-2" src="<%= post.thumbnail %> " alt="">
+                            <% } %>
+
+                            <a href="/explorer/<%= post._id %> " style="color:#222">
+                                <h5><%= post.title %> </h5>
+                                <p class="mb-4"><%= truncate(post.body) %></p>
+                            </a>
+                            <div class="d-flex">
+                                <small>
+                                    <%= moment(post.createdAt) %>,
+                                    Posted By <%= post.author.username %>,
+                                    <%= post.readTime %> 
+                                </small>
+                            </div>
+                        </div>
+                    <% } %>
+                <% } %>
             </section>
         </div>
     </div>
