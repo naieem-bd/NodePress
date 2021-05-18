@@ -41,6 +41,16 @@
                                     Posted By <%= post.author.username %>,
                                     <%= post.readTime %> 
                                 </small>
+
+                                <% if (user) { %>
+                                    <span class="ml-auto bookmark" data-post="<%= post._id %>">
+                                        <% if (bookmarks.includes(post._id)) { %>
+                                            <i class="fas fa-bookmark"></i>
+                                            <% } else { %>
+                                                <i class="far fa-bookmark"></i>
+                                        <% } %>
+                                    </span>
+                                <% } %>
                             </div>
                         </div>
                     <% } %>
@@ -76,6 +86,7 @@
 </div>
 
 <%- include('../../partials/footer.ejs') %> 
+<script src="/scripts/bookmarks.js"></script>
 
 </body>
 </html>
