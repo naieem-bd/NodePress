@@ -15,6 +15,10 @@ const commentSchema = new Schema({
         ref: 'User',
         required: true
     },
+    body: {
+        type: String,
+        required: true,
+    },    
     replies: [
         {
             body: {
