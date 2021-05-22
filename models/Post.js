@@ -43,5 +43,18 @@ const postSchema = new Schema({
     timestamps: true
 })
 
+postSchema.index({
+    title: 'text',
+    body: 'text',
+    tags: 'text'
+}, {
+    weights: {
+        title: 5,
+        tags: 5,
+        body: 2
+    }
+})
+
 const Post = model('Post', postSchema)
+
 module.exports = Post
