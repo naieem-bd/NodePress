@@ -25,7 +25,8 @@ exports.searchResultGetController = async(req, res, next) => {
             searchTerm: term,
             itemPerPage,
             currentPage,
-            totalPage
+            totalPage,
+            posts
         })
 
     } catch(e) {
