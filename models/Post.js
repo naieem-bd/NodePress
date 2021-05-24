@@ -1,7 +1,6 @@
 // title, body, author, tags, thumbnail, readTime, likes, dislikes, comments
 
 const {Schema, model} = require('mongoose')
-// const User = require('./User')
 const Comment = require('./Comment')
 
 const postSchema = new Schema({

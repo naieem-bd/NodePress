@@ -19,7 +19,7 @@ exports.searchResultGetController = async(req, res, next) => {
 
         let totalPage = totalPost / itemPerPage
 
-        res.render('/pages/explorer/search', {
+        res.render('pages/explorer/search', {
             title: `Result for - ${term}`,
             flashMessage: Flash.getMessage(req),
             searchTerm: term,
