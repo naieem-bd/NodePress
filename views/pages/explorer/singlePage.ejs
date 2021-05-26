@@ -9,7 +9,7 @@
                     <div class="d-flex">
                         <small>
                             <%= moment(post.createdAt) %>,
-                            Posted By <%= post.author.username %>,
+                            Posted By <a href="/author/<%= post.author._id %>"><%= post.author.username %></a>,
                             <%= post.readTime %> 
                         </small>
 
