@@ -174,3 +174,22 @@ exports.editProfilePostController = async (req, res, next) => {
         next(e)
     }
 }
+
+exports.bookmarksGetController = async(req, res, next) => {
+    try {
+        let profile = await Profile.findOne({ user: req.user._id })
+            .populate({
+                path: 'bookmarks',
+                module: 'Post',
+                select: 'title thumbnail'
+            })
+
+        res.render('pages/dashboard/bookmarks', {
+            title: 'My Bookmarks',
+            flashMessage: Flash.getMessage(req),
+            posts: profile.bookmarks
+        })
+    } catch(e) {
+        next(e)
+    }
+}
